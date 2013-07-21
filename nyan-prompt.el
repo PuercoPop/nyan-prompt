@@ -12,8 +12,8 @@
 ;;; Copying is an act of love, please copy. ♡
 ;;; The xpm taken awesome nyan-mode
 
-(defconst +nyan-prompt-dir+)
-(defconst +nyan-prompt-nyan-cat-image+ (concat +nyan-promt-dir+ "img/nyan.xpm"))
+(defconst +nyan-prompt-dir+ (file-name-directory (or load-file-name buffer-file-name)))
+(defconst +nyan-prompt-nyan-cat-image+ (create-image (concat +nyan-prompt-dir+ "img/nyan.xpm") 'xpm nil :ascent 'center))
 (defconst +nyan-prompt-nyan-cat-string+ (propertize "[]*" 'display +nyan-prompt-nyan-cat-image+))
 
 (eval-after-load 'eshell 
@@ -23,7 +23,11 @@
                                    (eshell/pwd))
                                   (if (= (user-uid) 0)
                                       " # "
-                                    (concat " " nyan-cat-string " "))
+                                    (concat " " +nyan-prompt-nyan-cat-string+ " "))
                                   ))
         
         eshell-prompt-regexp (rx (and line-start (0+ (not (any "#" "[]*" "\n"))) " " (and " " (or "#" "[]*") " ")))))
+
+(provide 'nyan-prompt)
+
+;;; nyan-mode.el
