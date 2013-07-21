@@ -5,12 +5,17 @@
 ;;; Version: 20130721
 ;;; Keywords: nyan, cat, lulz, eshell, rainbow
 
-;;; Inspired by from Jacek "TeMPOraL" Zlydach nyan-mode, to make Porter happy.
+;;; Commentary:
+
+;; Usage: (add-hook 'eshell-load-hook 'nyan-prompt-enable)
+
+;; Inspired by from Jacek "TeMPOraL" Zlydach nyan-mode, to make Porter happy.
 
 
-;;; License:
-;;; Copying is an act of love, please copy. ♡
-;;; The xpm taken awesome nyan-mode
+;; Copying is an act of love, please copy. ♡
+;; The xpm taken awesome nyan-mode
+
+;;; Code:
 
 (defconst +nyan-prompt-dir+ (file-name-directory
                              (or load-file-name buffer-file-name)))
@@ -26,6 +31,7 @@
   (propertize +nyan-prompt-nyan-cat-emoticon+
               'display +nyan-prompt-nyan-cat-image+))
 
+;;;###autoload
 (defun nyan-prompt-enable ()
   (setq eshell-prompt-function
         (lambda nil
@@ -43,7 +49,6 @@
                  (or "#" "~=[,,_,,]:3")
                  " "))))
 
-(add-hook 'eshell-load-hook 'nyan-prompt-enable)
 
 (provide 'nyan-prompt)
-;;; nyan-mode.el
+;;; nyan-mode.el ends here
