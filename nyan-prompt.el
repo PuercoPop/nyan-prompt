@@ -12,9 +12,18 @@
 ;;; Copying is an act of love, please copy. ♡
 ;;; The xpm taken awesome nyan-mode
 
-(defconst +nyan-prompt-dir+ (file-name-directory (or load-file-name buffer-file-name)))
-(defconst +nyan-prompt-nyan-cat-image+ (create-image (concat +nyan-prompt-dir+ "img/nyan.xpm") 'xpm nil :ascent 'center))
-(defconst +nyan-prompt-nyan-cat-string+ (propertize "[]*" 'display +nyan-prompt-nyan-cat-image+))
+(defconst +nyan-prompt-dir+ (file-name-directory
+                             (or load-file-name buffer-file-name)))
+
+(defconst +nyan-prompt-nyan-cat-image+
+  (create-image (concat +nyan-prompt-dir+ "img/nyan.xpm")
+                'xpm nil :ascent 'center))
+
+(defconst +nyan-prompt-nyan-cat-emoticon+ "~=[,,_,,]:3")
+
+(defconst +nyan-prompt-nyan-cat-string+
+  (propertize +nyan-prompt-nyan-cat-emoticon+
+              'display +nyan-prompt-nyan-cat-image+))
 
 (eval-after-load 'eshell 
   (setq eshell-prompt-function (lambda nil
@@ -26,7 +35,7 @@
                                     (concat " " +nyan-prompt-nyan-cat-string+ " "))
                                   ))
         
-        eshell-prompt-regexp (rx (and line-start (0+ (not (any "#" "[]*" "\n"))) " " (and " " (or "#" "[]*") " ")))))
+        eshell-prompt-regexp (rx (and line-start (0+ (not (any "#" +nyan-prompt-nyan-cat-emoticon+ "\n"))) " " (and " " (or "#" +nyan-prompt-nyan-cat-emoticon+) " ")))))
 
 (provide 'nyan-prompt)
 
