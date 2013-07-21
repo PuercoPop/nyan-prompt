@@ -19,24 +19,31 @@
   (create-image (concat +nyan-prompt-dir+ "img/nyan.xpm")
                 'xpm nil :ascent 'center))
 
-(defconst +nyan-prompt-nyan-cat-emoticon+ "~=[,,_,,]:3")
+(defconst +nyan-prompt-nyan-cat-emoticon+ "~=[,,_,,]:3"
+  "Unused. Have to figure out how to use a constant in the block")
 
 (defconst +nyan-prompt-nyan-cat-string+
   (propertize +nyan-prompt-nyan-cat-emoticon+
               'display +nyan-prompt-nyan-cat-image+))
 
-(eval-after-load 'eshell 
-  (setq eshell-prompt-function (lambda nil
-                                 (concat
-                                  (abbreviate-file-name
-                                   (eshell/pwd))
-                                  (if (= (user-uid) 0)
-                                      " # "
-                                    (concat " " +nyan-prompt-nyan-cat-string+ " "))
-                                  ))
+(defun nyan-prompt-enable ()
+  (setq eshell-prompt-function
+        (lambda nil
+          (concat
+           (abbreviate-file-name
+            (eshell/pwd))
+           (if (= (user-uid) 0)
+               " # "
+               (concat " " +nyan-prompt-nyan-cat-string+ " "))))
         
-        eshell-prompt-regexp (rx (and line-start (0+ (not (any "#" +nyan-prompt-nyan-cat-emoticon+ "\n"))) " " (and " " (or "#" +nyan-prompt-nyan-cat-emoticon+) " ")))))
+        eshell-prompt-regexp
+        (rx (and bol
+                 (0+ (not (any "#" "~=[,,_,,]:3" "\n")))
+                 " "
+                 (or "#" "~=[,,_,,]:3")
+                 " "))))
+
+(add-hook 'eshell-load-hook 'nyan-prompt-enable)
 
 (provide 'nyan-prompt)
-
 ;;; nyan-mode.el
