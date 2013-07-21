@@ -17,19 +17,19 @@
 
 ;;; Code:
 
-(defconst +nyan-prompt-dir+ (file-name-directory
+(defconst nyan-prompt-dir (file-name-directory
                              (or load-file-name buffer-file-name)))
 
-(defconst +nyan-prompt-nyan-cat-image+
-  (create-image (concat +nyan-prompt-dir+ "img/nyan.xpm")
+(defconst nyan-prompt-nyan-cat-image
+  (create-image (concat nyan-prompt-dir "img/nyan.xpm")
                 'xpm nil :ascent 'center))
 
-(defconst +nyan-prompt-nyan-cat-emoticon+ "~=[,,_,,]:3"
+(defconst nyan-prompt-nyan-cat-emoticon "~=[,,_,,]:3"
   "Unused. Have to figure out how to use a constant in the block")
 
-(defconst +nyan-prompt-nyan-cat-string+
-  (propertize +nyan-prompt-nyan-cat-emoticon+
-              'display +nyan-prompt-nyan-cat-image+))
+(defconst nyan-prompt-nyan-cat-string
+  (propertize nyan-prompt-nyan-cat-emoticon
+              'display nyan-prompt-nyan-cat-image))
 
 ;;;###autoload
 (defun nyan-prompt-enable ()
@@ -40,7 +40,7 @@
             (eshell/pwd))
            (if (= (user-uid) 0)
                " # "
-               (concat " " +nyan-prompt-nyan-cat-string+ " "))))
+               (concat " " nyan-prompt-nyan-cat-string " "))))
         
         eshell-prompt-regexp
         (rx (and bol
