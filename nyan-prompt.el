@@ -1,9 +1,10 @@
 ;;; nyan-prompt.el --- Nyan Cat on the eshell prompt.
 
-;;; Author: Javier "PuercoPop" Olaechea <pirata@gmail.com>
-;;; URL: http://github.com/PuercoPop/nyan-prompt
-;;; Version: 20130721
-;;; Keywords: nyan, cat, lulz, eshell, rainbow
+;; Author: Javier "PuercoPop" Olaechea <pirata@gmail.com>
+;; URL: http://github.com/PuercoPop/nyan-prompt
+;; Version: 0.2.0
+;; Keywords: nyan, cat, lulz, eshell, rainbow
+;; Dependencies ((rx 0))
 
 ;;; Commentary:
 
@@ -12,7 +13,7 @@
 ;; Inspired by from Jacek "TeMPOraL" Zlydach nyan-mode, to make Porter happy.
 
 
-;; Copying is an act of love, please copy. ♡
+;; Copying is an act of love, please copy.  ♡
 ;; The xpm taken awesome nyan-mode
 
 ;;; Code:
@@ -27,7 +28,7 @@
                 'xpm nil :ascent 'center))
 
 (defconst nyan-prompt-nyan-cat-emoticon "~=[,,_,,]:3"
-  "Unused. Have to figure out how to use a constant in the block")
+  "ASCII art representing the nyan-cat.")
 
 (defconst nyan-prompt-nyan-cat-string
   (propertize nyan-prompt-nyan-cat-emoticon
@@ -55,4 +56,4 @@
 
 
 (provide 'nyan-prompt)
-;;; nyan-mode.el ends here
+;;; nyan-prompt.el ends here
