@@ -17,6 +17,8 @@
 
 ;;; Code:
 
+(require 'rx)
+
 (defconst nyan-prompt-dir (file-name-directory
                              (or load-file-name buffer-file-name)))
 
@@ -41,12 +43,14 @@
            (if (= (user-uid) 0)
                " # "
                (concat " " nyan-prompt-nyan-cat-string " "))))
-        
+
+        ;; Match a string of characters (representing the path) then a space,
+        ;; the nyan ASCII art and then a space.
         eshell-prompt-regexp
         (rx (and bol
-                 (0+ (not (any "#" "~=[,,_,,]:3" "\n")))
+                 (1+ anything)
                  " "
-                 (or "#" "~=[,,_,,]:3")
+                 "~=[,,_,,]:3"
                  " "))))
 
 
