@@ -5,6 +5,7 @@
 ;; Version: 0.2.0
 ;; Keywords: nyan, cat, lulz, eshell, rainbow
 ;; Dependencies ((rx 0))
+;; SPDX-License-Identifier: GPL-3.0-or-later
 
 ;;; Commentary:
 
